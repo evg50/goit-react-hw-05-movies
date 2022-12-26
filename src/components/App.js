@@ -5,30 +5,43 @@ import { GlobalStyle } from './GlobalStyle';
 import { InvoiceDetails } from './InvoiceDetails';
 import { Invoices } from './Invoices';
 import { Layout } from './Layout';
+import Cast from './Cast/Cast';
+import MovieDetails from './MovieDetails/MovieDetails';
+import SearchBar from './SearchBar/SearchBar';
+import Reviews from './Reviews/Reviwes';
+import Home from './Home/Home';
+import Trend from './Trend/Trend';
+// import MoviesApiClass from '../service/MoviesApiClass';
+// import NewsApi from '../service/NewsApi';
 
 export const App = () => {
   return (
     <>
       <Routes>
-        {/* <Route path="/" element={<Layout />}>
-          <Route index element={<div>Homepage index route</div>} />
-          <Route path="dashboard" element={<div>Dashboard</div>} />
-          <Route path="sales" element={<Sales />}>
-            <Route index element={<div>Sales index route</div>} />
-            <Route path="analytics" element={<div>Analytics</div>} />
-            <Route path="invoices" element={<Invoices />}>
-              <Route index element={<div>Invoices index route</div>} />
-              <Route path=":invoiceId" element={<InvoiceDetails />} />
-            </Route>
-            <Route path="deposits" element={<div>Deposits</div>} />
+        <Route path="/" element={<Home />}>
+          <Route index element={<Trend />} />
+          <Route path="movies" element={<SearchBar />} />
+          <Route path="movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route path="reports" element={<div>Reports</div>} />
-          <Route path="feedback" element={<div>Feedback</div>} />
-          <Route path="customers" element={<div>Customers</div>} />
-        </Route> */}
+        </Route>
       </Routes>
       <GlobalStyle />
       <Toaster position="top-right" reverseOrder={false} />
     </>
   );
 };
+{
+  /*  
+          
+          
+        
+        
+        
+          
+            
+            
+          
+        </Route> */
+}
