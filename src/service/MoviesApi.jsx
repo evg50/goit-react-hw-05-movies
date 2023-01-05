@@ -28,18 +28,51 @@ async function getMovieDetails(movieId) {
   return data;
 }
 async function searchMovie(movieSearch) {
-  console.log(movieSearch);
+  // console.log(movieSearch);
   const config = {
-    url: `search/movie/&query=${movieSearch}`,
+    url: `search/movie`,
+    params: {
+      query: movieSearch,
+    },
   };
-  const response = await axios(config);
+  const { data } = await axios(config); // деструктуризируем из ответа нужное нам свойство data
 
-  console.log(response);
-  return response;
+  // console.log(response);
+  return data.results; // возвращаем из свойства data свойство results/ на нем лежит массив фильмов
+}
+async function getMovieCast(movieId) {
+  // console.log(movieSearch);
+  const config = {
+    url: `movie/${movieId}/credits`,
+  };
+  const { data } = await axios(config); // деструктуризируем из ответа нужное нам свойство data
+
+  console.log('cast', data.cast);
+  return data.cast; // возвращаем из свойства data свойство cast/ на нем лежит массив фильмов
+}
+async function getMovieReviews(movieId) {
+  // console.log(movieSearch);
+  const config = {
+    url: `movie/${movieId}/reviews`,
+    params: {
+      language: 'en-Us',
+    },
+  };
+  try {
+    const { data } = await axios(config); // деструктуризируем из ответа нужное нам свойство data
+
+    console.log('reviews', data.results);
+    return data.results; // возвращаем из свойства data свойство results/ на нем лежит массив отзывов  content ( отзыв) и name ( имя автора)
+  } catch (err) {
+    return err.message;
+  }
 }
 const Api = {
   trendApi,
   getMovieDetails,
+  searchMovie,
+  getMovieCast,
+  getMovieReviews,
 };
 
 export default Api;

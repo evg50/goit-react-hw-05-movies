@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
-export default function Search({ onChange }) {
+export default function Search({ onChange, value }) {
   const [search, setSearch] = useState('');
   return (
     <div>
-      <input type="text" onChange={e => setSearch(e.target.value)} />
+      <input
+        type="text"
+        // value={value && ''}
+        onChange={e => setSearch(e.target.value)}
+      />
       <input type="submit" onClick={() => onChange(search)} />
     </div>
   );

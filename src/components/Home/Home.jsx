@@ -1,7 +1,5 @@
 import { Outlet, Link } from 'react-router-dom';
 
-import MoviesApi from '../../service/MoviesApi';
-
 export default function Home() {
   return (
     <>

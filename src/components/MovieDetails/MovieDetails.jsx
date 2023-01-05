@@ -1,16 +1,22 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, Route, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Api from '../../service/MoviesApi';
-import axios from 'axios';
+// import Reviews from 'components/Reviews/Reviews';
 
-export default function MovieDetails() {
+// import axios from 'axios';
+
+export default function MovieDetails({ changeMovieId }) {
+  const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState([]);
   // console.log(movieId);
-
+  const location = useLocation();
+  console.log(location);
+  const backHref = location.state?.from ?? '/';
   async function getResponse() {
     const response = await Api.getMovieDetails(movieId);
     setMovieDetails(response);
+    changeMovieId(movieId);
   }
   useEffect(() => {
     getResponse();
@@ -22,11 +28,16 @@ export default function MovieDetails() {
     title,
     overview,
   } = movieDetails;
-  console.log('genres array', genres);
+  // console.log('genres array', genres);
   return (
     <>
-      <Link to="/movies" /> Go back к мовиес
+      <br />
+      <Link to={backHref}>
+        <button>Go back</button>
+      </Link>
+      <Link to="/movies" state={{ from: location }} />
       <h1>{title}</h1>;<p>{vote_average}</p>
+      <img src={`${baseImageUrl}${poster_path}`} alt={title} width="360" />
       <h2>Overview</h2>
       <p>{overview}</p>
       <h2>Genres</h2>
@@ -37,6 +48,15 @@ export default function MovieDetails() {
           })}
         </ul>
       }
+      <p>Additional information</p>
+      <Link to="cast" state={{ from: location }}>
+        cast
+      </Link>
+      <br />
+      <Link to="reviews" state={{ from: location }}>
+        reviews
+      </Link>
+      <Outlet />
     </>
   );
 }
