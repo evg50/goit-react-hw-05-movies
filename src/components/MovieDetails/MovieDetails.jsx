@@ -35,7 +35,6 @@ export default function MovieDetails({ changeMovieId }) {
       <Link to={backHref}>
         <button>Go back</button>
       </Link>
-      <Link to="/movies" state={{ from: location }} />
       <h1>{title}</h1>;<p>{vote_average}</p>
       <img src={`${baseImageUrl}${poster_path}`} alt={title} width="360" />
       <h2>Overview</h2>
@@ -49,13 +48,9 @@ export default function MovieDetails({ changeMovieId }) {
         </ul>
       }
       <p>Additional information</p>
-      <Link to="cast" state={{ from: location }}>
-        cast
-      </Link>
+      <Link to="cast">cast</Link>
       <br />
-      <Link to="reviews" state={{ from: location }}>
-        reviews
-      </Link>
+      <Link to="reviews">reviews</Link>
       <Outlet />
     </>
   );

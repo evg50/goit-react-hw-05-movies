@@ -1,10 +1,13 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import MoviesView from '../../pages/MoviesView';
 import Api from '../../service/MoviesApi';
 
 export default function Trend() {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  console.log(location);
+  // const backHref = location.state?.from ?? '/';
 
   async function getResponse() {
     const responses = await Api.trendApi();

@@ -2,17 +2,22 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from './GlobalStyle';
-import { useState } from 'react';
-
+import { useState, lazy, Suspense } from 'react';
+// import SearchBar from './SearchBar/SearchBar';
+// import Reviews from './Reviews/Reviews';
+import Home from './Home/Home';
+// import Trend from './Trend/Trend';
 // import { InvoiceDetails } from './InvoiceDetails';
 // import { Invoices } from './Invoices';
 // import { Layout } from './Layout';
-import Cast from './Cast/Cast';
-import MovieDetails from './MovieDetails/MovieDetails';
-import SearchBar from './SearchBar/SearchBar';
-import Reviews from './Reviews/Reviews';
-import Home from './Home/Home';
-import Trend from './Trend/Trend';
+// import Cast from './Cast/Cast';
+const MovieDetails = lazy(() => import('./MovieDetails/MovieDetails'));
+const SearchBar = lazy(() => import('./SearchBar/SearchBar'));
+const Trend = lazy(() => import('./Trend/Trend'));
+const Reviews = lazy(() => import('./Reviews/Reviews'));
+const Cast = lazy(() => import('./Cast/Cast'));
+// import MovieDetails from './MovieDetails/MovieDetails';
+
 // import MoviesApiClass from '../service/MoviesApiClass';
 // import NewsApi from '../service/NewsApi';
 

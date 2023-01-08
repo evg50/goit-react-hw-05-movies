@@ -1,4 +1,4 @@
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Api from '../../service/MoviesApi';
 import Search from '../Search';
@@ -12,7 +12,7 @@ export default function SearchBar() {
   //   setSearch(e.target.value);
   // };
   const [params, setParams] = useSearchParams();
-
+  const location = useLocation();
   // async function submitHeandler(e) {
   //   e.preventdefault(e);
   //   // const response = await Api.searchMovie(e.target.value);
@@ -24,6 +24,7 @@ export default function SearchBar() {
   const onChangeString = e => {
     console.log(e);
     setParams({ query: e });
+
     // setSearch(e);
   };
   // async function fetchApi(getParams) {
@@ -50,9 +51,9 @@ export default function SearchBar() {
   // }
   useEffect(() => {
     // const getParams = getSearchParams();
-    console.log('useEffect');
+    // console.log('useEffect');
     const getParams = params.get('query');
-    console.log(getParams);
+    // console.log(getParams);
     const fetchData = async searchMovie => {
       const data = await Api.searchMovie(searchMovie);
       console.log('data', data);
@@ -63,6 +64,9 @@ export default function SearchBar() {
       console.log('QUERY HTTP', fetchData(getParams));
 
       fetchData(getParams);
+      console.log('location в поиске', location);
+      location.state = { from: location };
+      console.log('location в поиске after', location);
       return;
     }
   }, [params]);
@@ -70,7 +74,9 @@ export default function SearchBar() {
   return (
     <div>
       <h1>Movies</h1>
-      <Link to="/">Go back Movies</Link>
+      <Link to="/">
+        <button>Go back Movies</button>
+      </Link>
       <br />
       <Search onChange={onChangeString} value={movies} />
       {movies.length && <MoviesView movies={movies} />}

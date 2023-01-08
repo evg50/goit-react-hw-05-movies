@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 export default function MoviesView({ movies }) {
   const baseImageUrl = 'https://image.tmdb.org/t/p/w500';
   const location = useLocation();
+
   console.log(movies);
   return (
     <ul>
