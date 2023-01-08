@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 
 export default function Home() {
@@ -16,8 +17,9 @@ export default function Home() {
           <button>Назад</button>
         </Link>
       )}
-
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

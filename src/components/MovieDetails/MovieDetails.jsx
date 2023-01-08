@@ -1,5 +1,5 @@
 import { Link, Outlet, useParams, Route, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Api from '../../service/MoviesApi';
 // import Reviews from 'components/Reviews/Reviews';
 
@@ -13,12 +13,14 @@ export default function MovieDetails({ changeMovieId }) {
   const location = useLocation();
   console.log(location);
   const backHref = location.state?.from ?? '/';
-  async function getResponse() {
-    const response = await Api.getMovieDetails(movieId);
-    setMovieDetails(response);
-    changeMovieId(movieId);
-  }
+
   useEffect(() => {
+    async function getResponse() {
+      const response = await Api.getMovieDetails(movieId);
+      setMovieDetails(response);
+      changeMovieId(movieId);
+    }
+
     getResponse();
   }, []);
   const {
@@ -51,7 +53,9 @@ export default function MovieDetails({ changeMovieId }) {
       <Link to="cast">cast</Link>
       <br />
       <Link to="reviews">reviews</Link>
-      <Outlet />
+      <Suspense fallback={<h2>load</h2>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 }

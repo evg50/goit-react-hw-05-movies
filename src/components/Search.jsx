@@ -5,6 +5,7 @@ export default function Search({ onChange, value }) {
   return (
     <div>
       <input
+        autoFocus
         type="text"
         // value={value && ''}
         onChange={e => setSearch(e.target.value)}

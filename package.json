@@ -2,12 +2,13 @@
   "name": "homeWork5",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://goitacademy.github.io/",
+  "homepage": "https://evg50.github.io/goit-react-hw-05-movies/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "gh-pages": "^4.0.0",
     "modern-normalize": "^1.1.0",
     "react": "^18.1.0",
     "react-debounce-input": "^3.3.0",
@@ -26,7 +27,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:js": "eslint src/**/*.{js,jsx}"
+    "lint:js": "eslint src/**/*.{js,jsx}",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

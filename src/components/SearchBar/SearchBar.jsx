@@ -65,7 +65,7 @@ export default function SearchBar() {
 
       fetchData(getParams);
       console.log('location в поиске', location);
-      location.state = { from: location };
+      // location.state = { from: location };
       console.log('location в поиске after', location);
       return;
     }
@@ -74,10 +74,12 @@ export default function SearchBar() {
   return (
     <div>
       <h1>Movies</h1>
-      <Link to="/">
+
+      {/* <Link to="/">
         <button>Go back Movies</button>
-      </Link>
+      </Link> */}
       <br />
+
       <Search onChange={onChangeString} value={movies} />
       {movies.length && <MoviesView movies={movies} />}
     </div>

@@ -2,7 +2,7 @@
 import { Toaster } from 'react-hot-toast';
 import { Route, Routes } from 'react-router-dom';
 import { GlobalStyle } from './GlobalStyle';
-import { useState, lazy, Suspense } from 'react';
+import { useState, lazy } from 'react';
 // import SearchBar from './SearchBar/SearchBar';
 // import Reviews from './Reviews/Reviews';
 import Home from './Home/Home';
@@ -28,7 +28,10 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home />}>
           <Route index element={<Trend />} />
+          {/* <Suspense fallback={null}> */}
           <Route path="movies" element={<SearchBar />} />
+          {/* </Suspense> */}
+
           <Route
             path="movies/:movieId"
             element={
